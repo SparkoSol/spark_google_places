@@ -1,0 +1,21 @@
+name: spark_google_places
+description: A library to search Google Places.
+version: 1.0.0
+#publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+environment:
+  sdk: '>=3.0.6 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons:
+  dio:
+
+dev_dependencies:
+  lints:
+  test:
+
+flutter:
+
+  uses-material-design: true
