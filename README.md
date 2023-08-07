@@ -22,5 +22,5 @@ Flutter library to search places
 
 ```dart
 final place = SparkGooglePlaces(apiKey: 'Your Google Api Key');
-final SparkPlaceResponse? = await place.searchGooglePlace(context);
+final SparkPlaceResponse? response = await place.searchGooglePlace(context);
 ```
