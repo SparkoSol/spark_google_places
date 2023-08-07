@@ -64,8 +64,10 @@ class RestService {
       String status = data['status'];
       if (status == 'ZERO_RESULTS') throw 'Unable to locate any places.';
       if (status != 'OK') throw status;
-      List<Map<String, dynamic>> predictions = data['predictions'];
-      return predictions.map<PlacesResponse>(PlacesResponse.fromJson).toList();
+      List predictions = data['predictions'];
+      return predictions
+          .map<PlacesResponse>((e) => PlacesResponse.fromJson(e))
+          .toList();
     } catch (_) {
       rethrow;
     }
@@ -91,8 +93,8 @@ class RestService {
       if (status != 'OK') throw status;
       final location = data['result']['geometry']['location'];
       return (
-        double.parse(location['lat']),
-        double.parse(location['lng']),
+      location['lat'] as double,
+      location['lng'] as double,
       );
     } catch (_) {
       rethrow;

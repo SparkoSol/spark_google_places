@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:spark_google_places/spark_google_places.dart';
-import 'package:spark_google_places/src/models.dart';
-import 'package:spark_google_places/src/rest_service.dart';
 
 class SearchPlaceView extends StatefulWidget {
   const SearchPlaceView({
@@ -51,7 +49,9 @@ class _SearchPlaceViewState extends State<SearchPlaceView> {
     final media = MediaQuery.of(context);
     late Widget child;
     if (_textController.text.isEmpty) {
-      child = _style.logo ?? Text('Enter a location to search.');
+      child = Center(
+        child: _style.logo ?? Text('Enter a location to search.'),
+      );
     } else if (_isLoading) {
       child = _style.loadingWidget ??
           Center(
@@ -88,7 +88,7 @@ class _SearchPlaceViewState extends State<SearchPlaceView> {
         padding: _style.pagePadding ??
             EdgeInsets.fromLTRB(
               10,
-              media.padding.top + 10,
+              10,
               10,
               media.padding.bottom + 10,
             ),
@@ -141,13 +141,13 @@ class _SearchPlaceViewState extends State<SearchPlaceView> {
       builder: (_) {
         return WillPopScope(
           onWillPop: () async => false,
-          child: CircularProgressIndicator(),
+          child: Center(child: CircularProgressIndicator()),
         );
       },
     );
     try {
       final latLng = await RestService.getLatLng(
-        place.description,
+        place.placeId,
       );
       if (!mounted) return;
       Navigator.of(context).pop();
