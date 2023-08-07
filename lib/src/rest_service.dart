@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:spark_google_places/src/models.dart';
 
-typedef LatLng = (double, double);
+typedef SparkLatLng = (double, double);
 
 class RestService {
   static final _client = Dio();
@@ -73,7 +73,7 @@ class RestService {
     }
   }
 
-  static Future<LatLng> getLatLng(String place) async {
+  static Future<SparkLatLng> getLatLng(String place) async {
     try {
       final result = await _client.get(
         '$_baseUrl/place/details/json?place_id=$place&key=$_apiKey',
